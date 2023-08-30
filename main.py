@@ -1,3 +1,28 @@
+from PIL import Image
+import streamlit as st
+import time
+
+icon = Image.open("./media/page_icon.png")
+st.set_page_config(page_title="Cellular Automata",
+                   page_icon=icon,
+                   layout="wide",
+                   initial_sidebar_state="auto"
+)
+st.header('Cellular Automata')
+
+st.sidebar.image('media/sierpinski.jpeg')
+st.sidebar.header('Cellular Automata')
+nav=st.sidebar.radio('',['Home', 'Elementary Cellular Automaton', 'LIFE', 'Authors'])
+st.sidebar.write('')
+st.sidebar.write('')
+st.sidebar.write('')
+st.sidebar.write('')
+st.sidebar.write('')
+st.sidebar.write('')
+st.sidebar.write('2023')
+st.sidebar.write('How to reach me')
+st.sidebar.write('[Enrique Galicia](https://enriquegap.github.io)')
+
 from random import randint
 from matplotlib.pyplot import matshow, show, savefig
 # CellularAutomata 1D
@@ -56,6 +81,8 @@ def iterateBand(band:list[int], rule:list[int]) -> list[int]:
 				elif band[i+1] == 0:
 					aux_band[i] = rule[7]
 	return aux_band
+
+
 def getPlot(band_number:int, rule_number:int) -> None:
 	matrix = []
 	rule = ruleToBinary(rule_number)
