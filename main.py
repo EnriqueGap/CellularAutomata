@@ -3,6 +3,7 @@ import streamlit as st
 import time
 import src.eca as eca
 import matplotlib.pyplot as plt
+from re import match
 
 icon = Image.open("./media/page_icon.png")
 st.set_page_config(page_title="Cellular Automata",
@@ -14,7 +15,7 @@ st.header('Cellular Automata')
 
 st.sidebar.image('media/sierpinski.jpeg')
 st.sidebar.header('Cellular Automata')
-nav=st.sidebar.radio('',['Home', 'Elementary Cellular Automaton', 'LIFE', 'Authors'])
+nav=st.sidebar.radio('sidebar',['Home', 'Elementary Cellular Automaton', 'LIFE', 'Authors'], label_visibility='collapsed')
 st.sidebar.write('')
 st.sidebar.write('')
 st.sidebar.write('')
@@ -41,7 +42,9 @@ if nav=='Elementary Cellular Automaton':
     	st.write("Please write a number to determine the size of the band")
 
     if not st.toggle('Random initialization', help='Switch to specify initialization', value=True):
-    	initialization = st.text_input("Please give an initialization")
+    	initialization = st.text_input("Please give an initialization (Examples: 2**10, 123456789, etc...)")
+    	if match(r"^2\*\*[0-9]+$", initialization):
+    		initialization = eval(initialization)
     	try:
     		initialization = int(initialization)
     		if (initialization<0)|(initialization>2**size_band-1):
@@ -60,6 +63,8 @@ if nav=='Elementary Cellular Automaton':
     		automata.setBand()   
     		 	
     if st.button('Go!'):
+    	number_initialization = int(''.join([str(i) for i in automata.band]), 2)
+    	st.write("Initialization: ",number_initialization)
     	automata.evolveBand()
     	fig, ax = plt.subplots()  ## <- Create matplotlib Figure & Axes
     	ax.matshow(automata.matrix, cmap="Greys")
