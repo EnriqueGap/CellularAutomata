@@ -1,6 +1,5 @@
 from PIL import Image
 import streamlit as st
-import time
 import src.eca as eca
 import matplotlib.pyplot as plt
 from re import match
