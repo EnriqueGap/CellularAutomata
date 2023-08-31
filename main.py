@@ -40,7 +40,7 @@ if nav=='Elementary Cellular Automaton':
     except:
     	st.write("Please write a number to determine the size of the band")
 
-    if button('Click here for give an initialization'):
+    if st.button('Click here for give an initialization'):
     	initialization = st.text_input("Please give an initialization (Examples: 2**10, 123456789, etc...)")
     	if match(r"^2\*\*[0-9]+$", initialization):
     		initialization = eval(initialization)
@@ -55,7 +55,7 @@ if nav=='Elementary Cellular Automaton':
     	except:
     		st.write("Please write a number for initialization")
 
-    elif button('Click here for a random initialization'):
+    elif st.button('Click here for a random initialization'):
     	if (size_band!="")&(iterations!=""):
 	    	automata = eca.ECA(size_band, iterations)
     		automata.setRule(rule)
