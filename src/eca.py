@@ -40,28 +40,36 @@ class ECA(object):
 
 	def iterateBand(self) -> list[int]:
 		aux_band = [0]*self.band_length
-		for i in range(1, self.band_length-1):
-			if self.band[i-1] == 1:
+		for i in range(0, self.band_length):
+			if i-1<0:
+				prev = self.band_length-1
+			else:
+				prev = i-1
+			if i+1>(self.band_length-1):
+				next = 0
+			else:
+				next = i+1
+			if self.band[prev] == 1:
 				if self.band[i] == 1:
-					if self.band[i+1] == 1:
+					if self.band[next] == 1:
 						aux_band[i] = self.rule[0]
-					elif self.band[i+1]==0:
+					elif self.band[next]==0:
 						aux_band[i] = self.rule[1]
 				elif self.band[i] == 0:
-					if self.band[i+1] == 1:
+					if self.band[next] == 1:
 						aux_band[i] = self.rule[2]
-					elif self.band[i+1]==0:
+					elif self.band[next]==0:
 						aux_band[i] = self.rule[3]
-			elif self.band[i-1] == 0:
+			elif self.band[prev] == 0:
 				if self.band[i] == 1:
-					if self.band[i+1] == 1:
+					if self.band[next] == 1:
 						aux_band[i] = self.rule[4]
-					elif self.band[i+1] == 0:
+					elif self.band[next] == 0:
 						aux_band[i] = self.rule[5]
 				elif self.band[i] == 0:
-					if self.band[i+1] == 1:
+					if self.band[next] == 1:
 						aux_band[i] = self.rule[6]
-					elif self.band[i+1] == 0:
+					elif self.band[next] == 0:
 						aux_band[i] = self.rule[7]
 		self.band = aux_band
 		return aux_band
