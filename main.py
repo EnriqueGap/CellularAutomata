@@ -14,7 +14,7 @@ st.header('Cellular Automata')
 
 st.sidebar.image('media/sierpinski.jpeg')
 st.sidebar.header('Cellular Automata')
-nav=st.sidebar.radio('sidebar',['Home', 'Elementary Cellular Automaton', 'LIFE', 'Authors'], label_visibility='collapsed')
+nav=st.sidebar.radio('',['Home', 'Elementary Cellular Automaton', 'LIFE', 'Authors'])
 st.sidebar.write('')
 st.sidebar.write('')
 st.sidebar.write('')
