@@ -14,16 +14,9 @@ st.header('Cellular Automata')
 
 st.sidebar.image('media/sierpinski.jpeg')
 st.sidebar.header('Cellular Automata')
-nav=st.sidebar.radio('',['Home', 'Elementary Cellular Automaton', 'LIFE', 'Authors'], index=1)
-st.sidebar.write('')
-st.sidebar.write('')
-st.sidebar.write('')
-st.sidebar.write('')
-st.sidebar.write('')
-st.sidebar.write('')
-st.sidebar.write('2023')
-st.sidebar.write('How to reach me')
-st.sidebar.write('[Enrique Galicia](https://enriquegap.github.io)')
+nav=st.sidebar.radio('',['Home', 'Elementary Cellular Automaton', 'LIFE'], index=1)
+st.sidebar.write('<br>'*10, unsafe_allow_html=True)
+st.sidebar.write('2023<br>How to reach me<br>[Enrique Galicia](https://enriquegap.github.io)<br><br>', unsafe_allow_html=True)
 
 if nav=='Elementary Cellular Automaton':
     st.subheader('Elementary Cellular Automaton')
@@ -65,8 +58,8 @@ if nav=='Elementary Cellular Automaton':
     	number_initialization = int(''.join([str(i) for i in automata.band]), 2)
     	st.write("Initialization: ",number_initialization)
     	automata.evolveBand()
-    	fig, ax = plt.subplots()  ## <- Create matplotlib Figure & Axes
+    	fig, ax = plt.subplots()
     	ax.matshow(automata.matrix, cmap="Greys")
     	ax.get_xaxis().set_visible(False)
     	ax.get_yaxis().set_visible(False)
-    	st.pyplot(fig)  ## <- Tell Streamlit to show that figure
+    	st.pyplot(fig)
