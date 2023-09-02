@@ -4,7 +4,9 @@ import src.eca as eca
 import matplotlib.pyplot as plt
 from re import match
 
-icon = Image.open("./media/page_icon.png")
+with open("./resources/text/eca.md") as eca_file:
+	eca_text = eca_file.read()
+icon = Image.open("./resources/images/page_icon.png")
 st.set_page_config(page_title="Cellular Automata",
                    page_icon=icon,
                    layout="wide",
@@ -12,15 +14,16 @@ st.set_page_config(page_title="Cellular Automata",
 )
 st.header('Cellular Automata')
 
-st.sidebar.image('media/sierpinski.jpeg')
+st.sidebar.image('./resources/images/sierpinski.jpeg')
 st.sidebar.header('Cellular Automata')
-nav=st.sidebar.radio('',['Home', 'Elementary Cellular Automaton', 'LIFE'], index=1)
+nav=st.sidebar.radio('',['Home', 'Elementary Cellular Automaton', 'LIFE', 'Langton'], index=1)
 st.sidebar.write('<br>'*10, unsafe_allow_html=True)
 st.sidebar.write('2023<br>How to reach me<br>[Enrique Galicia](https://enriquegap.github.io)<br><br>', unsafe_allow_html=True)
 
 if nav=='Elementary Cellular Automaton':
     st.subheader('Elementary Cellular Automaton')
     st.markdown('___')
+    st.markdown(eca_text)
     rule = st.selectbox('Select Rules',list(range(0,2**8)))
     iterations = st.text_input('Number of iterations')
     try:
